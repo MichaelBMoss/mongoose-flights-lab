@@ -1,15 +1,15 @@
-const Movie = require('../models/movie');
+const Flight = require('../models/flight');
 
 module.exports = {
-    new: newMovie,
+    new: newFlight,
     create: create,
     index: index,
   };
 
   async function index(req, res) {
     try {
-      const movieList = await Movie.find({});
-      res.render('movies/index', { movieList, errorMsg: '' });
+      const flightList = await Flight.find({});
+      res.render('flights/index', { flightList, errorMsg: '' });
     } catch (error) {
       // Handle any potential errors here
       res.status(500).send('An error occurred');
@@ -17,8 +17,8 @@ module.exports = {
   };
   
 
-function newMovie(req, res) {
-  res.render('movies/new', { errorMsg: '' });
+function newFlight(req, res) {
+  res.render('flights/new', { errorMsg: '' });
 }
 
 async function create(req, res) {
@@ -29,13 +29,13 @@ async function create(req, res) {
   // split cast into an array if it's not an empty string - using a regular expression as a separator
   if (req.body.cast) req.body.cast = req.body.cast.split(/\s*,\s*/);
   try {
-    await Movie.create(req.body);
+    await Flight.create(req.body);
     // Always redirect after CUDing data
-    // We'll refactor to redirect to the movies index after we implement it
-    res.redirect('/movies/index');
+    // We'll refactor to redirect to the flights index after we implement it
+    res.redirect('/flights/index');
   } catch (err) {
     // Typically some sort of validation error
     console.log(err);
-    res.render('movies/new', { errorMsg: err.message });
+    res.render('flights/new', { errorMsg: err.message });
   }
 }
