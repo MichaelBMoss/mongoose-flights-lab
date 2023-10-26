@@ -2,25 +2,27 @@
 
 <h2>Enter a New Flight</h2>
 <form action="/flights" method="POST">
-  <label>Title:
-    <input type="text" name="title">
-  </label><br>
-  <label>Release Year:
-    <input type="number" name="releaseYear">
-  </label><br>
-  <label>MPAA Rating
-    <select name="mpaaRating">
-      <option value="G">G</option>
-      <option value="PG">PG</option>
-      <option value="PG-13">PG-13</option>
-      <option value="R">R</option>
+  <label>Airline:
+    <select name="airline">
+      <option value="American">American</option>
+      <option value="Southwest">Southwest</option>
+      <option value="United">United</option>
     </select>
   </label><br>
-  <label>Cast (separate actors with commas):
-    <input type="text" name="cast">
+  <label>Airport:
+    <select name="airport">
+      <option value="AUS">AUS</option>
+      <option value="DFW">DFW</option>
+      <option value="DEN">DEN</option>
+      <option value="LAX">LAX</option>
+      <option value="SAN">SAN</option>
+    </select>
   </label><br>
-  <label>Now Showing:
-    <input type="checkbox" name="nowShowing" checked>
+  <label>Flight Number
+    <input type="text" name="flightNo">
+  </label><br>
+  <label>Departure Date:
+    <input type="date" name="depart">
   </label><br>
   <button type="submit">Add Flight</button>
 </form>
