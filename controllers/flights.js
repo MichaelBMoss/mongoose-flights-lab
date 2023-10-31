@@ -4,6 +4,7 @@ module.exports = {
     new: newFlight,
     create: create,
     index: index,
+    show: show,
   };
 
   async function index(req, res) {
@@ -33,4 +34,9 @@ async function create(req, res) {
     console.log(err);
     res.render('flights/new', { errorMsg: err.message });
   }
+}
+
+async function show(req, res) {
+  const flight = await Flight.findById(req.params.id).populate('destination');
+  res.render('flights/show', { flight, });
 }
