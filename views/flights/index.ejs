@@ -2,25 +2,30 @@
 
 <h2>Flight List</h2>
 
-<table>
-    <thead>
-        <tr>
-            <th>Airline</th>
-            <th>Airport</th>
-            <th>Flight Number</th>
-            <th>Departure Date</th>
-          </tr>
-    </thead>
-    <tbody>
-        <% for (let m of flightList) {  %>  
-            <tr>   
-                <td><%= m.airline %></td>
-                <td><%= m.airport %></td>
-                <td><%= m.flightNo %></td>
-                <td><%= m.departs %></td>
-                <td><a href="/flights/<%= m._id %>">DETAILS</a></td>
+<% if (flightList.length) { %>  
+    <table>
+        <thead>
+            <tr>
+                <th>Airline</th>
+                <th>Airport</th>
+                <th>Flight Number</th>
+                <th>Departure Date</th>
             </tr>
-        <% } %>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <% for (let m of flightList) {  %>  
+                <tr>   
+                    <td><%= m.airline %></td>
+                    <td><%= m.airport %></td>
+                    <td><%= m.flightNo %></td>
+                    <td><%= m.departs %></td>
+                    <td><a href="/flights/<%= m._id %>">DETAILS</a></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+<% } else { %>
+    <p>No Flights</p>
+<% }  %>      
+
 <%- include('../partials/footer') %>

@@ -6,10 +6,7 @@ module.exports = {
 
 async function create(req, res) {
   const flight = await Flight.findById(req.params.id);
-  if (flight.destination.length === 0) {
   flight.destination.push(req.body);
-  console.log('it was 0');
-  }
       try {
       await flight.save();
     } catch (err) {

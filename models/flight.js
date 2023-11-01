@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 // optional shortcut to the mongoose.Schema class
 const Schema = mongoose.Schema;
 
-const destinationchema = new Schema({
+const destinationSchema = new Schema({
   airport: {
     type: String,
     enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN'],
@@ -45,7 +45,13 @@ const flightSchema = new Schema({
       return oneYearFromNow;
     },
   },
-  destination: [destinationchema],
+  destination: [destinationSchema],
+  tickets: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Ticket',
+    },
+  ],
 }, {
   timestamps: true
 });

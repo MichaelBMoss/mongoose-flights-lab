@@ -18,6 +18,10 @@
             </tr>
     </tbody>
 </table>
+
+<br><br>
+
+<strong>Add Destinations</strong>
 <form action="/destination/<%= flight._id %>" method="POST">
     <label>Destination:
       <select name="airport">
@@ -35,6 +39,7 @@
   </form>
 
 <% if (flight.destination.length) { %>
+
     <table>
         <thead>
             <tr>
@@ -43,13 +48,48 @@
             </tr>
         </thead>
         <tbody>
-                <tr>   
-                    <td><%= flight.destination[0].airport %></td>
-                    <td><%= flight.destination[0].arrival %></td>
+            <% for (let f of flight.destination) {  %>  
+                <tr>
+                    <td><%= f.airport %></td>
+                    <td><%= f.arrival %></td>
                 </tr>
+            <% } %>
         </tbody>
     </table>
     <% } %>
+
+    <br><br>
+
+    <strong>Add Tickets</strong>
+    <form action="/ticket/<%= flight._id %>" method="POST">
+        <label>Seat:
+          <input type="text" name="seat" required pattern="[A-F][1-9]\d?" placeholder="A1 - F9" >
+        </label><br>
+        <label>Price:
+            <input type="number" name="price">
+          </label><br>
+        <button type="submit">Add Ticket</button>
+      </form>
+
+<% if (flight.destination.length) { %>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Seat Number</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let f of flight.tickets) {  %>  
+                <tr>
+                    <td><%= f.seat %></td>
+                    <td>$<%= f.price %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+<% } %>
 
 
 <%- include('../partials/footer') %>

@@ -1,5 +1,7 @@
 const Flight = require('../models/flight');
 
+const ticket = require('../models/ticket');
+
 module.exports = {
     new: newFlight,
     create: create,
@@ -37,6 +39,6 @@ async function create(req, res) {
 }
 
 async function show(req, res) {
-  const flight = await Flight.findById(req.params.id).populate('destination');
+  const flight = await Flight.findById(req.params.id).populate('tickets');
   res.render('flights/show', { flight, });
 }
